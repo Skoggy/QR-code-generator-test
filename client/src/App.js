@@ -1,8 +1,12 @@
 import { React, useState } from 'react'
 import QRCode from 'react-qr-code';
-
+import { useQuery } from 'react-query';
+import axios from 'axios'
 
 function App() {
+
+  const { isLoading, error, data } = useQuery('search', () =>
+    axios)
 
   const [input, setInput] = useState('')
   const [qrCode, setQrCode] = useState('');

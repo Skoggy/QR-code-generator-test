@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { builtinModules } = require('module');
+
 const stocksController = require('../../controllers/stocksController');
 
 router.route('/')
-    .get(stocksController.findAll);
+    .get(stocksController.findAll)
+    .post(stocksController.create);
 
 
 router.route('/:id')
