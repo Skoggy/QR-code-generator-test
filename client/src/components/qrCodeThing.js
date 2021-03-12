@@ -17,6 +17,10 @@ function QRCodeThing() {
         console.log(e.target.value)
         setInput(e.target.value)
     }
+    const dynamicQRCode = (e, name) => {
+        e.preventDefault();
+        setQrCode(name)
+    }
 
     return (
         <>
@@ -32,12 +36,14 @@ function QRCodeThing() {
                     onChange={onInputChange}
                     value={input}
                 />
-                {console.log(data.data[0].name)}
+                {isLoading ? <p>QR code loading</p> : data.data.map(stock => <button onClick={(e) => dynamicQRCode(e, stock.name)}>{stock.name}</button>)}
+                {console.log(qrCode)}
                 <button type="submit">
                     Generate Qr Code
                 </button>
             </form>
-            <QRCode value={data.data[0].name} />
+            {isLoading ? <p>QR Code Loading</p> : <QRCode value={qrCode} />}
+
         </>
     );
 }
